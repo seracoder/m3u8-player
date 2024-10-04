@@ -12,11 +12,9 @@
 	let currentlyPlayingUrl: string
 
 	onMount(() => {
-		urls = (JSON.parse(localStorage.getItem('urls') || '[]')).reverse()
-		console.log(urls.length === 1)
+		urls = JSON.parse(localStorage.getItem('urls') || '[]')
 		if (urls.length >= 1) {
 			currentlyPlayingUrl = urls[0];
-			console.log(currentlyPlayingUrl);
 		}
 	})
 
@@ -46,9 +44,13 @@
 		<button
 			on:click={
 				() => {
+					if (urls.includes(inputUrl)) {
+						alert('This url is already in the list');
+						return;
+					}
+					currentlyPlayingUrl = urls[0];
 					urls = [...urls, inputUrl]
 					saveToStorage();
-					currentlyPlayingUrl = urls[0];
 					inputUrl = '';
 				}
 			}
