@@ -1,3 +1,8 @@
+<svelte:head>
+	<title>M3U8 Player</title>
+	<meta name="description" content="Play any m3u8 file online with this simple web player.">
+</svelte:head>
+
 <script lang="ts">
 	import Player from '$lib/components/Player.svelte';
 	import { onMount } from 'svelte';
