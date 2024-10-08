@@ -33,7 +33,11 @@
 				{
 					xhrSetup: (xhr, url) => {
 						xhr.withCredentials = false;
-						xhr.open('GET', `/api/proxy?url=${url}`, true);
+						if (url.includes('http')) {
+							xhr.open('GET', `/api/proxy?url=${url}`, true);
+						} else {
+							xhr.open('GET', url, true);
+						}
 					}
 				}
 			);
@@ -48,7 +52,6 @@
 				}
 			});
 		} else {
-			// load normal video
 			videoElement.src = playUrl;
 		}
 	})
